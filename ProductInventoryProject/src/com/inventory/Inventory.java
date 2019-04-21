@@ -1,4 +1,4 @@
-package inventory;
+package com.inventory;
 import java.util.*; 
 
 public class Inventory
@@ -6,10 +6,6 @@ public class Inventory
     ArrayList<Product> inv = new ArrayList<Product>();
     double totalValue = 0;
 
-    public Inventory()
-    {
-        //
-    }
 
     public void addProduct(Product p)
     {

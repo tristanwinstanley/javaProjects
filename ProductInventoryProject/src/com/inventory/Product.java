@@ -1,4 +1,4 @@
-package inventory;
+package com.inventory;
 public class Product
 {
     private double price;
