@@ -26,6 +26,7 @@ public class InventoryDriver
         myPrint("Press 1 to add a product.");
         myPrint("Press 2 to remove a product.");
         myPrint("Press 3 to view current holdings.");
+        myPrint("Press 4 to view total inventory value.");
         myPrint("Enter quit to exit the application.");
         
         String choice = scanner.nextLine();
@@ -38,12 +39,31 @@ public class InventoryDriver
                 int quantity = makeChoiceNb("Please state product quantity");
                 inv.addProduct(new Product(price, quantity, id));
                 return true;
-                
+
+            case "2":
+                myPrint("Which product would you like to remove?");
+                inv.showInventory();
+                choice = scanner.nextLine();
+                if (inv.removeById(choice))
+                {
+                    myPrint("Your product was succesfully removed.");
+                }
+                else
+                {
+                    myPrint(choice + " is not a valid id");
+                }
+                return true;
+
             case "3":
                 inv.showInventory();
                 return true;
+
+            case "4":
+                myPrint(inv.getTotalValue());
+                return true;
             case "quit":
                 return false;
+
             default:
                 myPrint("Sorry but " + choice + " is not an available choice. Try again.");
                 return true;
@@ -123,5 +143,9 @@ public class InventoryDriver
     public static void myPrint(String s)
     {
         System.out.println(s);
+    }
+    public static void myPrint(double d)
+    {
+        System.out.println(d);
     }
 }

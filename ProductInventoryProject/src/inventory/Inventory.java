@@ -9,15 +9,9 @@ public class Inventory
     public void addProduct(Product p)
     {
         inv.add(p);
-        totalValue += p.getQuantity()*p.getPrice();
     }
 
     public double getTotalValue()
-    {
-        return totalValue;
-    }
-
-    public double sumUp()
     {
         double temp_val = 0;
         for(Product p: inv)
@@ -26,12 +20,28 @@ public class Inventory
         }
         return temp_val;
     }
+    public boolean removeById(String id)
+    {
+        boolean validId = false;
+        int i = 0;
+        for(Product p: inv)
+        {
+            if(p.getId().equals(id))
+            {
+                inv.remove(i);
+                validId = true;
+                break;
+            }
+            i++;
+        }
+        return validId;
+    }
 
     public void showInventory()
     {
+        System.out.println("ID  PRICE  QUANTITY");
         for(Product p: inv)
         {
-            System.out.println("ID  PRICE  QUANTITY");
             System.out.println(p.getId()+" "+p.getQuantity()+" "+p.getPrice());
         }
     }
