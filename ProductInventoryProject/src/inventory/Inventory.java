@@ -3,9 +3,8 @@ import java.util.*;
 
 public class Inventory
 {
-    ArrayList<Product> inv = new ArrayList<Product>();
-    double totalValue = 0;
-
+    private ArrayList<Product> inv = new ArrayList<Product>();
+    private double totalValue = 0;
 
     public void addProduct(Product p)
     {
@@ -26,5 +25,14 @@ public class Inventory
             temp_val += p.getQuantity()*p.getPrice();
         }
         return temp_val;
+    }
+
+    public void showInventory()
+    {
+        for(Product p: inv)
+        {
+            System.out.println("ID  PRICE  QUANTITY");
+            System.out.println(p.getId()+" "+p.getQuantity()+" "+p.getPrice());
+        }
     }
 }

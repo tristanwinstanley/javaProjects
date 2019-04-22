@@ -2,8 +2,9 @@ package inventory;
 import java.util.Scanner;
 public class InventoryDriver
 {
-    static Scanner scanner = new Scanner(System.in);
-    static Inventory inv = new Inventory();
+    private static Scanner scanner = new Scanner(System.in);
+    private static Inventory inv = new Inventory();
+
     public static void main(String[] args)
     {
         boolean running = true;
@@ -13,6 +14,7 @@ public class InventoryDriver
         while(running)
         {
             running = askChoice();
+            myPrint("");
         }
         myPrint("Good Bye");
 
@@ -36,7 +38,10 @@ public class InventoryDriver
                 int quantity = makeChoiceNb("Please state product quantity");
                 inv.addProduct(new Product(price, quantity, id));
                 return true;
-
+                
+            case "3":
+                inv.showInventory();
+                return true;
             case "quit":
                 return false;
             default:
