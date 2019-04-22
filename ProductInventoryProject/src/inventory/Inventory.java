@@ -6,9 +6,17 @@ public class Inventory
     private ArrayList<Product> inv = new ArrayList<Product>();
     private double totalValue = 0;
 
-    public void addProduct(Product p)
-    {
-        inv.add(p);
+    public boolean addProduct(Product newP)
+    {   
+        for(Product p: inv)
+        {
+            if (p.getId().equals(newP.getId()))
+            {
+                return false;
+            }   
+        }
+        inv.add(newP);
+        return true;
     }
 
     public double getTotalValue()

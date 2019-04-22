@@ -37,7 +37,14 @@ public class InventoryDriver
                 String id = makeChoiceString("Please state product id");
                 int price = makeChoiceNb("Please state product price");
                 int quantity = makeChoiceNb("Please state product quantity");
-                inv.addProduct(new Product(price, quantity, id));
+                if (inv.addProduct(new Product(price, quantity, id)))
+                {
+                    myPrint("Your product was succesfully added.");
+                }
+                else
+                {
+                    myPrint(id + " has already been added before.");
+                }
                 return true;
 
             case "2":
@@ -70,7 +77,7 @@ public class InventoryDriver
         }        
     }
 
-    public static String makeChoiceString(String question)
+    private static String makeChoiceString(String question)
     {
         //Checks if string is not empty
         String choice;
@@ -92,7 +99,7 @@ public class InventoryDriver
 
     }
 
-    public static int makeChoiceNb(String question)
+    private static int makeChoiceNb(String question)
     {
         //Checks if input is a number
         int choice;
@@ -103,13 +110,19 @@ public class InventoryDriver
             try
             {
                 choice = Integer.parseInt(userInput); 
-                break;
+                if (choice > 0)
+                {
+                    break;
+                }
+                else
+                {
+                    myPrint(userInput + " is not positive. Try again");
+                }
             }
             catch(Exception e)
             {
-                myPrint(userInput + " is not a valid number. Try again");
+                myPrint(userInput + " is not a number. Try again");
             }
-
         }
 
         return choice;
