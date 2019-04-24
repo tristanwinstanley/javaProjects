@@ -1,56 +1,49 @@
 package inventory;
 import java.util.*; 
+import java.util.HashMap;
 
 public class Inventory
 {
-    private ArrayList<Product> inv = new ArrayList<Product>();
+    private HashMap<String, Product> inv = new HashMap<String, Product>();
     private double totalValue = 0;
 
     public boolean addProduct(Product newP)
     {   
-        for(Product p: inv)
+        if(inv.containsKey(newP.getId()))
         {
-            if (p.getId().equals(newP.getId()))
-            {
-                return false;
-            }   
+            return false;
         }
-        inv.add(newP);
+        
+        inv.put(newP.getId(),newP);
         return true;
     }
 
     public double getTotalValue()
     {
         double temp_val = 0;
-        for(Product p: inv)
+        for (Product p : inv.values()) 
         {
             temp_val += p.getQuantity()*p.getPrice();
         }
+
         return temp_val;
     }
     public boolean removeById(String id)
     {
-        boolean validId = false;
-        int i = 0;
-        for(Product p: inv)
+        if (inv.remove(id) == null)
         {
-            if(p.getId().equals(id))
-            {
-                inv.remove(i);
-                validId = true;
-                break;
-            }
-            i++;
+            return false;
         }
-        return validId;
+        
+        return true;
     }
 
     public void showInventory()
     {
         System.out.println("ID  PRICE  QUANTITY");
-        for(Product p: inv)
+        for (Product p: inv.values())
         {
-            System.out.println(p.getId()+" "+p.getQuantity()+" "+p.getPrice());
+            System.out.println(p.getId()+" "+p.getPrice()+" "+p.getQuantity());
         }
     }
 }
